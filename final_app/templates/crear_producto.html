@@ -4,12 +4,32 @@
 {% endblock %}
 
 {% block content %}
-    <!--Comentario en HTML-->
-    {% comment "Datos de la página Index" %}
-    En esta página se mostrará la bienvenida al sistema
-    {% endcomment %}
+<form action="{% url 'save_producto' %}" method="POST">
+    {% csrf_token %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message">
+                {{message}}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <label for="Codigo">Codigo </label>
+    <input type="text" name="codigo" >
     
-    <h1>Sin mensaje para mostrar</h1>
-    
+    <label for="Nombre">Nombre </label>
+    <input type="text" name="nombre" />
 
+    <label for="precio_compra">Precio compra</label>
+    <input type= "floatformat" name="precio_compra"/>
+    
+    <label for="precio_venta">Precio venta</label>
+    <input type = "floatformat" name="precio_venta"/>
+    
+    <label for="fecha_compra">Fecha compra</label>
+    <input type = "date" name="fecha_compra"/>
+    
+    <label for="estado">Estado</label>
+    <input type = "text" name="estado"/>
+    <input type="submit" value="Agregar" />
+</form>
 {% endblock %}

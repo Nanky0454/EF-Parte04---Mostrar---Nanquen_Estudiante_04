@@ -4,12 +4,31 @@
 {% endblock %}
 
 {% block content %}
-    <!--Comentario en HTML-->
-    {% comment "Datos de la página Index" %}
-    En esta página se mostrará la bienvenida al sistema
-    {% endcomment %}
+<form action="{% url 'save_curso' %}" method="POST">
+    {% csrf_token %}
+    {% if messages %}
+    {% for message in messages %}
+        <div class="message">
+            {{message}}
+        </div>
+    {% endfor %}
+    {% endif %}
     
-    <h1>Sin mensaje para mostrar</h1>
+    <label for="Codigo">Codigo </label>
+    <input type="text" name="codigo" >
     
+    <label for="Nombre">Nombre </label>
+    <input type="text" name="nombre" />
 
+    <label for="horas"> Horas</label>
+    <input type= "number" name="horas"/>
+    
+    <label for="creditos">Creditos</label>
+    <input type = "number" name="creditos"/>
+    
+    <label for="estado">Estado</label>
+    <input type = "text" name="estado"/>
+
+    <input type="submit" value="Agregar" />
+</form>
 {% endblock %}
